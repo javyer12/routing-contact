@@ -1,16 +1,41 @@
 import React, { Fragment } from 'react';
-import { Outlet, Link, useLoaderData, Form } from 'react-router-dom';
+import { Outlet, NavLink, useSubmit, useNavigation, Link, useLoaderData, Form } from 'react-router-dom';
 import { getContacts, createContact } from '../models/contacts';
+import { useEffect } from 'react';
 
-export async function loader() {
-    const contacts = await getContacts();
-    return { contacts };
+export async function loader({ request }) {
+    let contacts;
+    let q;
+    let url;
+    try {
+        url = new URL(request.url);
+        q = url.searchParams.get('q');
+        contacts = await getContacts(q);
+    } catch (err) {
+        alert(err.message);
+    }
+    return { contacts, q };
+
 }
+
 export async function action() {
-    await createContact();
+    try {
+        await createContact();
+    } catch (err) {
+        alert(err.message)
+    }
 }
+
 export default function Root() {
-    const { contacts } = useLoaderData();
+    const { contacts, q } = useLoaderData();
+    const navigation = useNavigation();
+    const submit = useSubmit();
+
+    const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+
+    useEffect(() => {
+        document.getElementById("q").value = q;
+    }, [ q ]);
 
     return (
         <Fragment>
@@ -20,18 +45,26 @@ export default function Root() {
                     <Form id="search-form" role="search">
                         <input
                             id="q"
+                            className={searching ? "loading" : ""}
                             aria-label='Search contacts'
                             placeholder="Search contacts..."
                             type="search"
                             name="q"
+                            defaultValue={q}
+                            onChange={(e) => {
+                                const isFirstSearch = q = null;
+                                submit(e.currentTarget.form, {
+                                    repalce: !isFirstSearch,
+                                });
+                            }}
                         />
                         <div id="search-spinner"
                             aria-hidden
-                            hidden={true}
+                            hidden={!searching}
                         />
                         <div
                             className="sr-only"
-                            aria-live="pilite"></div>
+                            aria-live="polite"></div>
                     </Form>
                     <Form method="post" >
                         <button type="submit">New</button>
@@ -46,11 +79,19 @@ export default function Root() {
                             <Link to={`contacts/2`}>Your Friend</Link>
                         </li>
                     </ul> */}
+                    <Link
+                        className="back-home"
+                        to="/">
+                        Back to Home
+                    </Link>
                     {contacts ? (
                         <ul>
                             {contacts.map((contact) => (
                                 <li key={contact.id}>
-                                    <Link to={`contacts/${contact.id}`}>
+                                    <NavLink
+                                        className={({ isActive, isPending }) =>
+                                            isActive ? "active" : isPending ? "pending" : " "}
+                                        to={`contacts/${contact.id}`}>
                                         {contact.first || contact.last ? (
                                             <>
                                                 {contact.first} {contact.last}
@@ -59,7 +100,7 @@ export default function Root() {
                                             <i>No Name</i>
                                         )}{" "}
                                         {contact.favorite && <span>★</span>}
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             ))}
                         </ul>
@@ -70,7 +111,9 @@ export default function Root() {
                     )}
                 </nav>
             </div>
-            <div id="detail"><Outlet /></div>
+            <div id="detail" className={
+                navigation.state === "loading" ? "loading" : " "
+            }><Outlet /></div>
         </Fragment>
     )
 }

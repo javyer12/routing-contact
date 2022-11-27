@@ -1,14 +1,20 @@
-import { Form, useLoaderData, redirect } from 'react-router-dom';
+import { Form, useLoaderData, useNavigate, redirect } from 'react-router-dom';
 import { updateContact } from '../models/contacts';
 
 export async function action({ request, params }) {
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
-    await updateContact(params.contactId, updates);
+    try {
+        await updateContact(params.contactId, updates);
+        alert(`Contact with ${params.contactId} was updated successfully.`)
+    } catch (err) {
+        alert(`Contact ${params.contactId} was not updated successfully. ${err.message}`)
+    }
     return redirect(`/contacts/${params.contactId}`);
 }
 export default function EditContact() {
     const contact = useLoaderData();
+    const navifate = useNavigate();
     console.log(contact)
     return (
         <Form method="post" id="contact-form">
@@ -64,7 +70,11 @@ export default function EditContact() {
             </label>
             <p>
                 <button type="submit">Save</button>
-                <button type="button">Cancel</button>
+                <button type="button"
+                    onClick={() => {
+                        navigate(-1)
+                    }}
+                >Cancel</button>
             </p>
         </Form>
     )
