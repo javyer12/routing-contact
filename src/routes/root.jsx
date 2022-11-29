@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Outlet, NavLink, useSubmit, useNavigation, Link, useLoaderData, Form } from 'react-router-dom';
 import { getContacts, createContact } from '../models/contacts';
+import { AiFillLinkedin } from 'react-icons/ai';
 import { useEffect } from 'react';
 
 export async function loader({ request }) {
@@ -40,7 +41,13 @@ export default function Root() {
     return (
         <Fragment>
             <div id="sidebar">
-                <h1>Contacts</h1>
+                <h1><a
+                    href='https://www.linkedin.com/in/francisco-javier-murillo-guillen-6302bb203/'
+                    target="_blank"
+                    className="links"
+                >Francisco  {"  "}{" "} </a>
+                    <AiFillLinkedin />
+                </h1>
                 <div>
                     <Form id="search-form" role="search">
                         <input
@@ -111,9 +118,8 @@ export default function Root() {
                     )}
                 </nav>
             </div>
-            <div id="detail" className={
-                navigation.state === "loading" ? "loading" : " "
-            }><Outlet /></div>
+            <div id="detail" className={`index ${navigation.state === "loading" ? "loading" : " "
+                }`}><Outlet /></div>
         </Fragment>
     )
 }

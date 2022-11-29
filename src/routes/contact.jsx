@@ -67,6 +67,13 @@ export default function Contact() {
                     </p>
                 )}
 
+                {/* number phone */}
+                {contact.phone ? <p>
+                    <a target="_blank" href={`https://api.whatsapp.com/send?phone=${contact.phone}`} className="links">
+                        +504 {contact.phone}
+                    </a>
+                </p> : <p>No phone added</p>}
+
                 {/* notes */}
                 {contact.notes && <p>{contact.notes}</p>}
 

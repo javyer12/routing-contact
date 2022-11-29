@@ -12,9 +12,11 @@ export async function action({ request, params }) {
     }
     return redirect(`/contacts/${params.contactId}`);
 }
+
+// https://api.whatsapp.com/send?phone=50499402691
 export default function EditContact() {
     const contact = useLoaderData();
-    const navifate = useNavigate();
+    const navigate = useNavigate();
     console.log(contact)
     return (
         <Form method="post" id="contact-form">
@@ -48,6 +50,18 @@ export default function EditContact() {
             </label>
             <label>
                 <span>
+                    Cellphone Number
+                </span>
+                <input
+                    placeholder="33333333"
+                    type="number"
+                    name="phone"
+                    aria-label="phone"
+                    defaultValue={contact.phone}
+                />
+            </label>
+            <label>
+                <span>
                     Avatar URL
                 </span>
                 <input
@@ -58,6 +72,14 @@ export default function EditContact() {
                     defaultValue={contact.avatar}
                 />
             </label>
+            {/* <label>
+                <span>
+                    <label htmlFor="avatar">Or Choose  <br /> a picture</label>
+                </span>
+                <input type="file"
+                    id="avatar" name="avatar"
+                    accept="image/png, image/jpeg"></input>
+            </label> */}
             <label>
                 <span>
                     Notes

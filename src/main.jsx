@@ -8,7 +8,7 @@ import EditContact, { action as editAction } from './routes/edit';
 import { action as destroyAction } from './routes/destroy';
 import Index from "./routes/index";
 import './index.css';
-
+import './styles/main.css';
 // createRoutesFromElements, para crear las rutas con estetica de  jsx
 const router = createBrowserRouter([
   {
