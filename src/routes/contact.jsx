@@ -43,7 +43,8 @@ export default function Contact() {
             <div>
                 <img
                     key={contact.avatar}
-                    src={contact.avatar || null} />
+                    src={contact.avatar || null}
+                    alt="avatar" />
             </div>
             <div >
                 <h1>{contact.first || contact.last ? (

@@ -85,6 +85,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin:0;
 }
 
 code {
@@ -189,18 +190,17 @@ form[action$="destroy"] button {
   padding-right: 2rem;
 }
 
-#sidebar h1 {
-  font-size: 1rem;
-  font-weight: 500;
+#sidebar article  {
+ width:100%;
   display: flex;
-  align-items: center;
-  margin: 0;
+  align-items: space-between;
+  margin: auto;
   padding: 1rem 2rem;
   border-top: 1px solid #e3e3e3;
   order: 1;
   line-height: 1;
+  text-align: center !important;
 }
-
 /* #sidebar h1::before {
   background-image: url("./assets/logo.png");
   margin-right: 0.5rem;
@@ -329,9 +329,8 @@ i {
 }
 
 #contact {
-  max-width: 100%;
+  width: 100%;
   display: flex;
-  margin: 10%;
   margin-top:10%;
   padding:2%;
   background: rgba( 239, 232, 232, 0.35 );

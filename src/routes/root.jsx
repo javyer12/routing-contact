@@ -3,6 +3,7 @@ import { Outlet, NavLink, useSubmit, useNavigation, Link, useLoaderData, Form } 
 import { getContacts, createContact } from '../models/contacts';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { useEffect } from 'react';
+import Search from '../components/Search';
 
 export async function loader({ request }) {
     let contacts;
@@ -31,61 +32,47 @@ export default function Root() {
     const { contacts, q } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
-
+    const logged = false;
     const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
-
+    const user = {
+        name: "juan"
+    }
     useEffect(() => {
         document.getElementById("q").value = q;
     }, [ q ]);
 
     return (
-        <Fragment>
+        <Fragment >
+
+            {/* <div className='contact-main'> */}
+            <div id="detail" className={`bording index ${navigation.state === "loading" ? "loading" : " "
+                }`}><Outlet />
+            </div>
+
             <div id="sidebar">
-                <h1><a
-                    href='https://www.linkedin.com/in/francisco-javier-murillo-guillen-6302bb203/'
-                    target="_blank"
-                    className="links"
-                >Francisco  {"  "}{" "} </a>
-                    <AiFillLinkedin />
-                </h1>
+                {logged ? <article>
+                    <a
+                        href='https://www.linkedin.com/in/francisco-javier-murillo-guillen-6302bb203/'
+                        target="_blank"
+                        className="links"
+                    >{user.name}  {"  "}{" "} </a>
+                </article>
+                    :
+                    <article>
+                        <a
+                            href='https://www.linkedin.com/in/francisco-javier-murillo-guillen-6302bb203/'
+                            target="_blank"
+                            className="links"
+                        >Francisco  {"  "}{" "} </a>
+                        <AiFillLinkedin />
+
+                    </article>
+                }
+
                 <div>
-                    <Form id="search-form" role="search">
-                        <input
-                            id="q"
-                            className={searching ? "loading" : ""}
-                            aria-label='Search contacts'
-                            placeholder="Search contacts..."
-                            type="search"
-                            name="q"
-                            defaultValue={q}
-                            onChange={(e) => {
-                                const isFirstSearch = q = null;
-                                submit(e.currentTarget.form, {
-                                    repalce: !isFirstSearch,
-                                });
-                            }}
-                        />
-                        <div id="search-spinner"
-                            aria-hidden
-                            hidden={!searching}
-                        />
-                        <div
-                            className="sr-only"
-                            aria-live="polite"></div>
-                    </Form>
-                    <Form method="post" >
-                        <button type="submit">New</button>
-                    </Form>
+                    <Search searching={searching} submit={submit} q={q} />
                 </div>
                 <nav>
-                    {/* <ul>
-                        <li>
-                            <Link to={`contacts/1`}>Your Name</Link>
-                        </li>
-                        <li>
-                            <Link to={`contacts/2`}>Your Friend</Link>
-                        </li>
-                    </ul> */}
                     <Link
                         className="back-home"
                         to="/">
@@ -118,8 +105,8 @@ export default function Root() {
                     )}
                 </nav>
             </div>
-            <div id="detail" className={`index ${navigation.state === "loading" ? "loading" : " "
-                }`}><Outlet /></div>
+            {/* </div> */}
         </Fragment>
+
     )
 }
