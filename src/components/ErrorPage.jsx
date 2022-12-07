@@ -8,6 +8,7 @@ export default function ErrorPage() {
         <div id="error-page" >
             <h1>Ooops!!</h1>
             <p>Sorry, an unexpected error has occured.</p>
+            <p>We're working on that.</p>
             <p>
                 <i className="error-message">
                     {error.statusText || error.message}

@@ -1,5 +1,6 @@
 import { Form, useLoaderData, useFetcher } from 'react-router-dom';
 import { getContact, updateContact } from '../models/contacts';
+import avatar from '../assets/perfil.png';
 
 export async function loader({ params }) {
     let contact;
@@ -43,7 +44,7 @@ export default function Contact() {
             <div>
                 <img
                     key={contact.avatar}
-                    src={contact.avatar || null}
+                    src={contact.avatar || avatar}
                     alt="avatar" />
             </div>
             <div >

@@ -29,14 +29,12 @@ export async function action() {
 }
 
 export default function Root() {
-    const { contacts, q } = useLoaderData();
+    const { contacts, q, user } = useLoaderData();
+    console.log(user)
     const navigation = useNavigation();
     const submit = useSubmit();
     const logged = false;
     const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
-    const user = {
-        name: "juan"
-    }
     useEffect(() => {
         document.getElementById("q").value = q;
     }, [ q ]);
@@ -55,17 +53,14 @@ export default function Root() {
                         href='https://www.linkedin.com/in/francisco-javier-murillo-guillen-6302bb203/'
                         target="_blank"
                         className="links"
-                    >{user.name}  {"  "}{" "} </a>
+                    >'kuk'  {"  "}{" "} </a>
                 </article>
                     :
                     <article>
-                        <a
-                            href='https://www.linkedin.com/in/francisco-javier-murillo-guillen-6302bb203/'
-                            target="_blank"
+                        <Link
+                            to="/user"
                             className="links"
-                        >Francisco  {"  "}{" "} </a>
-                        <AiFillLinkedin />
-
+                        > Log in {"  "}{" "} </Link>
                     </article>
                 }
 

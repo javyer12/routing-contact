@@ -7,6 +7,7 @@ import Contact, { loader as contactLoader, action as contactAction } from './rou
 import EditContact, { action as editAction } from './routes/edit';
 import { action as destroyAction } from './routes/destroy';
 import Index from "./routes/index";
+import User, { action as userAction, loader as userLoader } from './routes/user';
 import './index.css';
 import './styles/main.css';
 // createRoutesFromElements, para crear las rutas con estetica de  jsx
@@ -27,6 +28,12 @@ const router = createBrowserRouter([
             element: <Contact />,
             loader: contactLoader,
             action: contactAction,
+          },
+          {
+            path: "user/:userId",
+            element: <User />,
+            action: userAction,
+            loader: userLoader,
           },
           {
             path: "contacts/:contactId/edit",

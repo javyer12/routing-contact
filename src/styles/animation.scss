@@ -3,11 +3,30 @@ body {
   }
   #welcome-message {
     text-align: center;
-    font-size:90%;
+    font-size:2rem;
+    position: relative;
+    transform: rotateX(30deg);
+    font-family: 'dragon_is_comingregular', serif;
+    transition: all 5s ease-out infinite;
+    color: rgb(0, 144, 17);
+    text-shadow:    0 1px 1px rgba(rgb(189, 212, 114), .95),
+                        0 3px 10px rgba(rgb(10, 220, 59), .85),
+                        0 3px 20px rgba(rgb(95, 196, 119), .95);
+    animation-name: welcome;
   }
+
+@keyframes welcome
+{
+    70%,
+    100%
+    {
+        stroke-dashoffset: 3.5em;
+    }
+}
+
   .text{
     font-size: 20%;
-    margin-left:8%;
+    margin-left:30%;
   }
   .letter-image {
     position: absolute;
@@ -52,7 +71,7 @@ body {
       height: 0;
       border-style: solid;
       border-width: 0 0 100px 200px;
-      border-color: transparent transparent #e95f55 transparent;
+      border-color: transparent transparent #cf4a43 transparent;
       z-index: 2;
       // animation-name: letter;
       // animation-duration: 3s;
@@ -73,7 +92,7 @@ body {
       -moz-transition: transform .4s .4s, z-index .2s .4s;
       transform-origin: 50% 0%;
       transition: transform .4s .4s, z-index .2s .4s;
-      border-color: #cf4a43 transparent transparent transparent;
+      border-color: rgb(21,37,141) transparent transparent transparent;
       z-index: 2;
     }
     
@@ -82,7 +101,7 @@ body {
       bottom: 0;
       width: 200px;
       height: 100px;
-      background: #cf4a43;
+      background: #091700;
       z-index: 0;
     }
     
@@ -93,7 +112,7 @@ body {
       height: 0;
       border-style: solid;
       border-width: 50px 0 50px 100px;
-      border-color: transparent transparent transparent #e15349;
+      border-color: transparent transparent transparent #cf4a43;
       z-index: 2;
     }
   
@@ -192,8 +211,8 @@ body {
       }
     }
 
-    #welcome-message {
-      color:rgb(41, 148, 47);
-      font-size: 2rem;
-
+    @media (max-width:700px){
+      .letter-image {
+        visibility: hidden;
+      }
     }
