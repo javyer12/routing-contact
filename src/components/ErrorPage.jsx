@@ -13,6 +13,8 @@ export default function ErrorPage() {
                     {error.statusText || error.message}
                 </i>
             </p>
+
+            <img src="https://i.imgur.com/AI4BS2I.png" />
         </div>
     )
 }
