@@ -21,10 +21,12 @@ export default function Index() {
                 </div>
                 <div className="shadow"></div>
             </div>
-            <p id="welcome-message">
-                Click "New" button to  <br /> create a new contact.
-                <br />
-            </p>
+            <div className="message">
+                <p id="welcome-message">
+                    Click "New" button to  <br /> add a  contact.
+                    <br />
+                </p>
+            </div>
         </div >
     )
 }

@@ -8,10 +8,10 @@ body {
     transform: rotateX(30deg);
     font-family: 'dragon_is_comingregular', serif;
     transition: all 5s ease-out infinite;
-    color: rgb(0, 144, 17);
+    color: rgb(4, 33, 15);
     text-shadow:    0 1px 1px rgba(rgb(189, 212, 114), .95),
-                        0 3px 10px rgba(rgb(10, 220, 59), .85),
-                        0 3px 20px rgba(rgb(95, 196, 119), .95);
+                        0 3px 10px rgba(rgb(227, 239, 229), .85),
+                        0 3px 20px rgba(rgb(205, 228, 210), .95);
     animation-name: welcome;
   }
 
@@ -92,7 +92,7 @@ body {
       -moz-transition: transform .4s .4s, z-index .2s .4s;
       transform-origin: 50% 0%;
       transition: transform .4s .4s, z-index .2s .4s;
-      border-color: rgb(21,37,141) transparent transparent transparent;
+      border-color: rgb(198, 226, 205) transparent transparent transparent;
       z-index: 2;
     }
     
@@ -211,8 +211,10 @@ body {
       }
     }
 
-    @media (max-width:700px){
+    @media (max-width:730px){
       .letter-image {
-        visibility: hidden;
+        height: 20vh;
+        // margin-top:-5rem;
+        margin: -5rem 0 0 3.5rem !important;
       }
     }

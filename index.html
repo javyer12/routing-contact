@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="/src/assets//logo-l.png" />
+    <meta name="description" content="Put your description here." />
+    <meta name="theme_color" content="#317EFB" />
     <meta charset="UTF-8" />
     <link
       rel="icon"
@@ -19,9 +22,15 @@
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
-          navigator.serviceWorker.register("/service-worker.js");
+          navigator.serviceWorker.register("./service-worker.js");
         });
       }
     </script>
   </body>
 </html>
+<!-- // {
+  //   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  // }
+   -->
+
+// falta menu, pagina de usuario, base de datos y file input

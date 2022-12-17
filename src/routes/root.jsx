@@ -30,7 +30,6 @@ export async function action() {
 
 export default function Root() {
     const { contacts, q, user } = useLoaderData();
-    console.log(user)
     const navigation = useNavigation();
     const submit = useSubmit();
     const logged = false;

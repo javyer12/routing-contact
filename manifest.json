@@ -1,21 +1,30 @@
 {
-    "short_name": "CONTACTING",
+    "short_name": "contacts",
+    "description":"Add your favorite contacts",
     "name": "contacting",
     "icons": [
       {
         "src": "./src/assets/logo.png",
         "type": "image/png",
-        "sizes": "192x192"
+        "sizes": "500x500",
+        "purpose": "any maskable"
       },
       {
         "src": "./src/assets/logo.png",
         "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "500x500",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "./src/assets/logo.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any maskable"
       }
     ],
-    "start_url": "./index.html",
+    "start_url": "/index.html",
     "background_color": "#0099fe",
     "display": "standalone",
     "scope": "/",
-    "theme_color": "#0099fe"
+    "theme_color": "#317EFB"
   }
