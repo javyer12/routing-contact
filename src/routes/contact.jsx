@@ -73,7 +73,7 @@ export default function Contact() {
 
                 {/* number phone */}
                 {contact.phone ? <p>
-                    <a target="_blank" href={`https://api.whatsapp.com/send?phone=${contact.phone}`} className="links">
+                    <a target="_blank" href={`https://api.whatsapp.com/send?phone=${contact.phone}`} className="links-w">
                         +504 {contact.phone}
                     </a>
                 </p> : <p>No phone added</p>}

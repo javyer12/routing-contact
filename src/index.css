@@ -212,6 +212,10 @@ form[action$="destroy"] button {
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
+.links-w {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
 #sidebar > div {
   display: flex;
   align-items: center;
@@ -308,7 +312,7 @@ i {
 }
 
 #sidebar nav a.active {
-  background: hsl(224, 98%, 58%);
+  background: hsl(0, 0%, 0%);
   color: white;
 }
 
@@ -333,12 +337,11 @@ i {
   display: flex;
   margin-top:10%;
   padding:2%;
-  background: rgba( 239, 232, 232, 0.35 );
+  background: rgba(255, 255, 255, 0.35);
   box-shadow: 0 4px 4px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 7.5px );
   -webkit-backdrop-filter: blur( 1.5px );
   border-radius: 1px;
-
 }
 
 #contact h1 {
