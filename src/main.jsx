@@ -11,6 +11,11 @@ import User, { action as userAction, loader as userLoader } from './routes/user'
 import './index.css';
 import './styles/main.css';
 // createRoutesFromElements, para crear las rutas con estetica de  jsx
+
+//firebase
+import { firebaseConfig } from '../firebase/app';
+import { FirebaseAppProvider } from 'reactfire';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,7 +58,9 @@ const router = createBrowserRouter([
 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </FirebaseAppProvider>
 )

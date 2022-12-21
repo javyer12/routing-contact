@@ -2,6 +2,7 @@ import { Form, useLoaderData, useFetcher } from 'react-router-dom';
 import { getContact, updateContact } from '../models/contacts';
 import avatar from '../assets/perfil.png';
 
+
 export async function loader({ params }) {
     let contact;
     try {
@@ -29,6 +30,7 @@ export async function action({ request, params }) {
 }
 // route for contacts
 export default function Contact() {
+
     const contact = useLoaderData();
     // const contact = {
     //     first: 'Your',

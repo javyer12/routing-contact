@@ -5,7 +5,13 @@ import { AiFillLinkedin } from 'react-icons/ai';
 import { useEffect } from 'react';
 import Search from '../components/Search';
 
+// firebase
+// import { doc, getFirestore } from 'firebase/firestore';
+// import { FirebaseAppProvider, FirestoreProvider, useFirestoreDocData, useFirestore, useFirebaseApp } from 'reactfire';
+
+
 export async function loader({ request }) {
+
     let contacts;
     let q;
     let url;
@@ -29,6 +35,11 @@ export async function action() {
 }
 
 export default function Root() {
+    // const usersRef = doc(useFirestore(), 'users', 'user');
+    // const { email, name } = useFirestoreDocData(usersRef);
+    // const firestoreInstance = getFirestore(useFirebaseApp());
+    // console.log(email, name)
+
     const { contacts, q, user } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
@@ -39,8 +50,9 @@ export default function Root() {
     }, [ q ]);
 
     return (
-        <Fragment >
+        // <FirestoreProvider sdk={firestoreInstance}>
 
+        <Fragment >
             {/* <div className='contact-main'> */}
             <div id="detail" className={`bording index ${navigation.state === "loading" ? "loading" : " "
                 }`}><Outlet />
@@ -101,6 +113,7 @@ export default function Root() {
             </div>
             {/* </div> */}
         </Fragment>
+        // </FirestoreProvider>
 
     )
 }
