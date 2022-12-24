@@ -50,7 +50,6 @@ export default function Root() {
     }, [ q ]);
 
     return (
-        // <FirestoreProvider sdk={firestoreInstance}>
 
         <Fragment >
             {/* <div className='contact-main'> */}

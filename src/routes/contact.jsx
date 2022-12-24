@@ -17,6 +17,7 @@ export async function loader({ params }) {
 
     return getContact(params.contactId);
 }
+
 export async function action({ request, params }) {
     let formData;
     try {
@@ -28,9 +29,9 @@ export async function action({ request, params }) {
         favorite: formData.get("favorite") === "true"
     });
 }
+
 // route for contacts
 export default function Contact() {
-
     const contact = useLoaderData();
     // const contact = {
     //     first: 'Your',
@@ -50,15 +51,14 @@ export default function Contact() {
                     alt="avatar" />
             </div>
             <div >
-                <h1>{contact.first || contact.last ? (
-                    <>
-                        {contact.first} {contact.last}
-                    </>
-                ) : (
-                    <i>
-                        No Name
-                    </i>
-                )} {" "}
+                <h1>
+                    {contact.first || contact.last ? (
+                        <>{contact.first} {contact.last}</>
+                    )
+                        :
+                        (
+                            <i>No Name</i>
+                        )} {" "}
                     <Favorite contact={contact} />
                 </h1>
 
@@ -72,11 +72,14 @@ export default function Contact() {
                 )}
 
                 {/* number phone */}
-                {contact.phone ? <p>
-                    <a target="_blank" href={`https://api.whatsapp.com/send?phone=${contact.phone}`} className="links-w">
-                        +504 {contact.phone}
-                    </a>
-                </p> : <p>No phone added</p>}
+                {contact.phone ?
+                    <p>
+                        <a target="_blank" href={`https://api.whatsapp.com/send?phone=${contact.phone}`} className="links-w">
+                            +504 {contact.phone}
+                        </a>
+                    </p>
+                    :
+                    <p>No phone added</p>}
 
                 {/* notes */}
                 {contact.notes && <p>{contact.notes}</p>}
@@ -85,7 +88,8 @@ export default function Contact() {
                     <Form action="edit">
                         <button type="submit">Edit</button>
                     </Form>
-                    <Form action="destroy"
+                    <Form
+                        action="destroy"
                         method="post"
                         onSubmit={(e) => {
                             if (!confirm("Please confirm you want to delete this record.")) {

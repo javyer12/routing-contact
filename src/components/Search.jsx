@@ -28,7 +28,8 @@ function Search({ searching, submit, q }) {
                 />
                 <div
                     className="sr-only"
-                    aria-live="polite"></div>
+                    aria-live="polite">
+                </div>
             </Form>
             <Form method="post" >
                 <button type="submit">New</button>
